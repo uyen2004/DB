@@ -2,8 +2,8 @@ create database QLBanSach;
 use QLBanSach;
 
 create table KhachHang(
-	MaKH char(10) not null primary key,
-	TaiKhoan varchar(50),
+    MaKH char(10) not null primary key,
+    TaiKhoan varchar(50),
     MatKhau char(12),
     Email varchar(100),
     DiaChi varchar(255),
@@ -14,14 +14,14 @@ create table KhachHang(
 );
 
 create table DonHang(
-	MaDonHang char(10) not null primary key,
+    MaDonHang char(10) not null primary key,
     DaThanhToan char(5),
     NgayGiao date,
     NgayDat date,
     TinhTrangGH varchar(255)
 );
 create table ChiTietDonHang(
-	MaKH char(10),
+    MaKH char(10),
     MaDonHang char(10),
     SoLuong int,
     DonGia int,
@@ -31,26 +31,26 @@ create table ChiTietDonHang(
 alter table ChiTietDonHang add CONSTRAINT MaKH  FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH);
 
 create table TacGia(
-	MaTacGia char(10) not null primary key,
-	DienThoai varchar(15),
+    MaTacGia char(10) not null primary key,
+    DienThoai varchar(15),
     TieuSu varchar(255),
     DiaChi varchar(255),
     TenTacGia varchar(100)
 );
 
 create table NhaXuatBan(
-	MaNSX char(10) not null primary key,
-	TenNXB varchar(255),
+    MaNSX char(10) not null primary key,
+    TenNXB varchar(255),
     DiaChi varchar(255),
     DienThoai varchar(15)
 );
 
 create table ChuDe(
-	MaChuDe char(10) not null primary key,
+    MaChuDe char(10) not null primary key,
     TenChuDe varchar(100)
 );
 create table Sach(
-	MaSach char(10) not null primary key,
+    MaSach char(10) not null primary key,
     MaNSX char(10) not null,
     MaChuDe char(10) not null,
     TenSach varchar(100),
@@ -66,9 +66,9 @@ ALTER TABLE Sach ADD MaDonHang char(10) not null;
 alter table Sach add CONSTRAINT MaDH  FOREIGN KEY (MaDonHang) REFERENCES ChiTietDonHang(MaDonHang);
 
 create table ChiTietTacGia(
-	MaTacGia char(10) not null,
+    MaTacGia char(10) not null,
     MaSach char(10) not null,
-	VaiTro varchar(50),
+    VaiTro varchar(50),
     ViTri varchar(50),
     primary key(MaTacGia, MaSach),
     foreign key (MaTacGia) references TacGia(MaTacGia),
