@@ -23,12 +23,14 @@ create table DonHang(
 create table ChiTietDonHang(
     MaKH char(10),
     MaDonHang char(10),
+    MaSach char(10),
     SoLuong int,
     DonGia int,
-    primary key(MaKH, MaDonHang),
+    primary key(MaDonHang, MaSach),
     foreign key (MaDonHang) references DonHang(MaDonHang)
 );
 alter table ChiTietDonHang add CONSTRAINT MaKH  FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH);
+alter table ChiTietDonHang add CONSTRAINT MaSach  FOREIGN KEY (MaSach) REFERENCES Sach(MaSach);
 
 create table TacGia(
     MaTacGia char(10) not null primary key,
@@ -62,8 +64,7 @@ create table Sach(
     foreign key(MaNSX)references NhaXuatBan(MaNSX),
     foreign key(MaChuDe)references ChuDe(MaChuDe)
 );
-ALTER TABLE Sach ADD MaDonHang char(10) not null;
-alter table Sach add CONSTRAINT MaDH  FOREIGN KEY (MaDonHang) REFERENCES ChiTietDonHang(MaDonHang);
+
 
 create table ChiTietTacGia(
     MaTacGia char(10) not null,
